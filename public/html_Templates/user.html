@@ -1,0 +1,26 @@
+<h1>Welcome back {{userName}}</h1>
+<button ng-click="deleteUser()">Delete Me</button>
+<div><h3>Track this stock</h3></div>
+<form ng-submit="addStock(stockSymbol); getQuote(stockSymbol)">
+  <input placeholder="Symbol" ng-model="stockSymbol"><button>Track</button>
+</form>
+<button ng-click="logout()">Log out</button>
+<div ng-if="stocks.length !== 0">
+  <h2>You're currently tracking these stocks</h2>
+  <!-- <button>Refresh All</button> -->
+  <div class="tracking" ng-repeat="stock in stocks">
+    {{stock}}
+    <div class="quoteBox">
+      <div class="quoteHeader" ng-repeat="header in dataHeaders">{{header}}</div>
+      <div class="quoteData" ng-repeat="data in latestData track by $index">{{data}}</div>
+    </div>
+    <button ng-model="stock" ng-click="getQuote(stock)">Quote</button>
+    <button>Graph</button>
+    <button ng-model="stock" ng-click="removeStock(stock)">Remove</button>
+    <button>Buy</button>
+    <button>Sell</button>
+  </div>
+</div>
+<div ng-if="stocks.length === 0">
+  <h2>You are not tracking any stocks at this time.</h2>
+</div>

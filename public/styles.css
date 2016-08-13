@@ -1,0 +1,14 @@
+.tracking{
+  background-color: lightblue;
+  border: 1px dashed black;
+  display: inline-block;
+  position:relative;
+  height:100%;
+}
+
+.quoteHeader{
+  float:left
+}
+.quoteLeft{
+  float:right
+}
