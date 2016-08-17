@@ -3,13 +3,13 @@ app.directive('quoteBox',function(){
     restrict:'E',
     templateUrl:'directives/quoteBoxTempl.html',
     link:function($scope, elem, attr){
-      $scope.stocksTest = "HELLO";
-      console.log("This is stocks in the directive");
-      console.log($scope.stocks);
+      // console.log("This is stocks in the directive");
+      // console.log($scope.stocks);
     },
     scope:{
-      stocks:'='
-    }
+      stock:'='
+    },
+    controller:"userCtrl"
 
 
   };

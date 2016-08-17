@@ -14,15 +14,11 @@ app.controller('userCtrl',function($scope,$state,loginService,dataService){
   $scope.addStock = function(symbol){
       symbol = symbol.split(",");
       loginService.addStock(symbol, userName).then(function(successData){
-        console.log("This is successData in controller");
-        console.log(successData);
         $scope.stocks = successData.data.stocks;
       });
   };
 
   $scope.removeStock = function(symbol){
-    console.log("This is symbol in the removeStock ctrl func: ");
-    console.log(symbol);
     loginService.removeStock(symbol, userName).then(function(successData){
       $scope.stocks = successData.data.stocks;
     });
@@ -36,8 +32,14 @@ app.controller('userCtrl',function($scope,$state,loginService,dataService){
 
   $scope.getQuote = function(symbol){
     dataService.getQuote(symbol).then(function(successData){
-      $scope.dataHeaders = successData.data.dataset.column_names;
-      $scope.latestData = successData.data.dataset.data[0];
+      var headers = successData.data.dataset.column_names;
+      var latestData = successData.data.dataset.data[0];
+      var quote = {};
+      headers.forEach(function(value, index){
+        quote[value] = latestData[index];
+      });
+      //console.log("THis is the new quote object: ", quote);
+      $scope.quote = quote;
       $scope.refreshTime = successData.data.dataset.refreshed_at;
     });
   }

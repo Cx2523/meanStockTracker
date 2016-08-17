@@ -1,13 +1,13 @@
 var express = require('express');
 var mongoose = require('mongoose');
 var passport = require('passport');
-var passportFaceBook = require('./passportFaceBookAuth');
-var passportLocal = require('./passportLocalAuth');
+var passportFaceBook = require('./server/passportFaceBookAuth');
+var passportLocal = require('./server/passportLocalAuth');
 var cors = require('cors');
 var bodyParser = require('body-parser');
 
 
-var userCtrl = require('./userCtrl');
+var userCtrl = require('./server/userCtrl');
 
 var PORT = 8080;
 
@@ -39,17 +39,26 @@ app.get('/',function(req, res){
   res.send("HOME PAGE");
 });
 
-///LOCAL LOGIN//////////////////////////////////////////////
+///LOGIN//////////////////////////////////////////////
 app.post('/auth/register', userCtrl.create);
 app.post('/auth/login', userCtrl.login);
 app.put('/user/:username',userCtrl.removeStock);
 app.post('/user/:username',userCtrl.trackStocks);
 app.patch('/user/:username',userCtrl.deleteUser);
+//////////LOCAL HOST////////////////////////////////////////
+// mongoose.connect('mongodb://localhost/ecommerceTest',function(err){
+//   if(err){
+//     console.log("There was an error connecting to ecommerceTest");
+//   } else {
+//     console.log("Connected to ecommerceTest db");
+//   }
+// });
 
-mongoose.connect('mongodb://localhost/ecommerceTest',function(err){
+mongoose.connect('mongodb://chris:abc123@ds139985.mlab.com:39985/stocktracker',function(err){
   if(err){
-    console.log("There was an error connecting to ecommerceTest");
+    console.log("There was an error connecting to mLab db");
+    console.log(err);
   } else {
-    console.log("Connected to ecommerceTest db");
+    console.log("Connected to mLab db");
   }
 });

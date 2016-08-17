@@ -1,1 +1,8 @@
-<h1>stocksTest</h1>
+<h1>{{stock}}</h1>
+<table>
+  <tr ng-repeat="(header, data) in quote"><td>{{header}}</td><td>{{data}}</td></tr>
+</table>
+<button ng-model="stock" ng-click="getQuote(stock)">Quote</button>
+<button>Graph</button>
+<button>Buy</button>
+<button>Sell</button>

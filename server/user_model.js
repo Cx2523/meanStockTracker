@@ -1,8 +1,13 @@
 var mongoose = require('mongoose');
 var crypto = require('crypto');
 var jwt = require('jsonwebtoken');
+var config = require('./config.js');
 var Stocks = require('./stock_model.js');
 var Schema = mongoose.Schema;
+
+
+console.log("This is config: ");
+console.log(config);
 
 var User = new Schema({
   email:{
@@ -40,7 +45,7 @@ User.methods.generateJwt = function() {
     email: this.email,
     name: this.name,
     exp: parseInt(expiry.getTime() / 1000),
-  }, 'secret');
+  }, config.jwt.secret);
 };
 
 module.exports = mongoose.model('users', User);

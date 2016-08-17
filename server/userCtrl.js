@@ -66,7 +66,7 @@ function login(req, res) {
 function trackStocks(req, res){
   console.log("This is req in trackStocks:");
   console.log(req.body.name);
-  User.findOneAndUpdate({name:req.body.name},{$push:{stocks:{$each: req.body.symbol}}},{new:true},
+  User.findOneAndUpdate({name:req.body.name},{$addToSet:{stocks:{$each: req.body.symbol}}},{new:true},
   function(err, result){
     if(err){
       console.log("ERROR");
