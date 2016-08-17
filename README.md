@@ -1,4 +1,4 @@
-Add a file called "config.js" to the /Users/clc523/Desktop/myWebDev/meanStockTracker/server folder. Into this file copy and paste the following:
+Add a file called "config.js" to the server folder. Into this file copy and paste the following:
 
 module.exports = {
   jwt: {
